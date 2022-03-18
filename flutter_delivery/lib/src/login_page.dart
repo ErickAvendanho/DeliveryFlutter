@@ -10,8 +10,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppBar(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Delivery App'),
+      ),
     );
   }
 }
