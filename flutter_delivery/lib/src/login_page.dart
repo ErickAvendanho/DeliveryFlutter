@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text('Flutter Delivery App'),
       ),
+      body: Text("Hola mundo"),
     );
   }
 }
