@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/src/login_page.dart';
+import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,12 @@ class _MyAppState extends State<MyApp> {
       title: 'Delivery App Flutter',
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
-      routes: {'login': (BuildContext context) => LoginPage()},
+      routes: {
+        'login': (BuildContext context) => LoginPage()
+        },
+      theme: ThemeData(
+        primaryColor: MyColors.primaryColor
+      ),
     );
   }
 }
