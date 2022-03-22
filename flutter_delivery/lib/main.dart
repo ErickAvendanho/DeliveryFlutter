@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/src/login_page.dart';
+import 'package:flutter_delivery/src/login/login_page.dart';
+import 'package:flutter_delivery/src/register/register_page.dart';
 import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 void main() {
@@ -21,11 +22,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
-        'login': (BuildContext context) => LoginPage()
-        },
+        'login': (BuildContext context) => LoginPage(),
+        'register': (BuildContext context) => RegisterPage(),
+      },
       theme: ThemeData(
-        primaryColor: MyColors.primaryColor
-      ),
+          //fontFamily: 'NimbusSans',
+          primaryColor: MyColors.primaryColor),
     );
   }
 }
