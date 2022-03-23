@@ -31,8 +31,6 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         child: Stack(
           children: [
-            Positioned(top: -80, left: -100, child: _circleLogin()),
-            Positioned(child: _textLogin(), top: 60, left: 25),
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -45,6 +43,8 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
+            Positioned(top: -80, left: -100, child: _circleLogin()),
+            Positioned(child: _textLogin(), top: 60, left: 25),
           ],
         ),
       ),
@@ -93,15 +93,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buttonLogin() {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
         onPressed: () {},
-        child: Text('Ingresar'),
+        child: const Text('Ingresar'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            padding: EdgeInsets.symmetric(vertical: 15)),
+            padding: const EdgeInsets.symmetric(vertical: 15)),
       ),
     );
   }
@@ -115,14 +115,18 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Contraseña',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Contraseña',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        obscureText: true,
+        textInputAction: TextInputAction.done,
       ),
     );
   }
@@ -137,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
             color: MyColors.primaryColor,
           ),
         ),
-        SizedBox(width: 7),
+        const SizedBox(width: 7),
         GestureDetector(
           onTap: _con.goToRegisterPage,
           child: Text(
@@ -161,14 +165,17 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Correo electronico',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.mail,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Correo electronico',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.mail,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        textInputAction: TextInputAction.next,
       ),
     );
   }

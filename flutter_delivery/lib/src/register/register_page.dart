@@ -21,12 +21,12 @@ class _RegisterPageState extends State<RegisterPage> {
             Positioned(child: _iconBack(), top: 51, left: -5),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 150),
+              margin: const EdgeInsets.only(top: 150),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     _imageUser(),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     _textFieldEmail(),
                     _textFieldName(),
                     _textFieldLastName(),
@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _imageUser() {
     return CircleAvatar(
-      backgroundImage: AssetImage('assets/img/user_profile_2.png'),
+      backgroundImage: const AssetImage('assets/img/user_profile_2.png'),
       radius: 60,
       backgroundColor: Colors.grey[200],
     );
@@ -54,11 +54,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _circle() {
     return Container(
-        width: 240,
-        height: 230,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: MyColors.primaryColor));
+      width: 240,
+      height: 230,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: MyColors.primaryColor),
+    );
   }
 
   Widget _textFieldEmail() {
@@ -70,14 +71,17 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Correo electronico',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.mail,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Correo electronico',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.mail,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        textInputAction: TextInputAction.next,
       ),
     );
   }
@@ -91,14 +95,17 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Nombre',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.person,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Nombre',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.person,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        textInputAction: TextInputAction.next,
       ),
     );
   }
@@ -112,14 +119,17 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Apellido',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.person_outline,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Apellido',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.person_outline,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        textInputAction: TextInputAction.next,
       ),
     );
   }
@@ -133,14 +143,17 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Telefono',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.phone,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Telefono',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.phone,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        textInputAction: TextInputAction.next,
       ),
     );
   }
@@ -154,14 +167,18 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Contraseña',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Contraseña',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        obscureText: true,
+        textInputAction: TextInputAction.next,
       ),
     );
   }
@@ -175,14 +192,18 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Confirmar contraseña',
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
-            prefixIcon: Icon(
-              Icons.lock_outline,
-              color: MyColors.primaryColor,
-            )),
+          hintText: 'Confirmar contraseña',
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          prefixIcon: Icon(
+            Icons.lock_outline,
+            color: MyColors.primaryColor,
+          ),
+        ),
+        cursorColor: MyColors.primaryColor,
+        obscureText: true,
+        textInputAction: TextInputAction.done,
       ),
     );
   }
@@ -190,31 +211,36 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _buttonLogin() {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
         onPressed: () {},
-        child: Text('REGISTRARSE'),
+        child: const Text('REGISTRARSE'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            padding: EdgeInsets.symmetric(vertical: 15)),
+            padding: const EdgeInsets.symmetric(vertical: 15)),
       ),
     );
   }
 
   Widget _iconBack() {
     return IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.arrow_back_ios, color: Colors.white));
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+    );
   }
 
   Widget _textRegister() {
-    return Text('REGISTRO',
-        style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'NimbusSans'));
+    return const Text(
+      'REGISTRO',
+      style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          fontFamily: 'NimbusSans'),
+    );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter_delivery/src/register/register_page.dart';
 import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -22,8 +22,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
-        'login': (BuildContext context) => LoginPage(),
-        'register': (BuildContext context) => RegisterPage(),
+        'login': (BuildContext context) => const LoginPage(),
+        'register': (BuildContext context) => const RegisterPage(),
       },
       theme: ThemeData(
           //fontFamily: 'NimbusSans',
