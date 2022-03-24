@@ -9,25 +9,23 @@ class RegisterController {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController confirmPasswordController = new TextEditingController();
 
-
-  Future? init(BuildContext context){
+  Future? init(BuildContext context) {
     this.context = context;
   }
 
-  void register(){
+  void register() {
     String email = emailController.text.trim();
     String name = nameController.text.trim();
     String lastname = lastnameController.text.trim();
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
-    String confirmPassword = emailController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
 
-
-    print('email');
-    print('name');
-    print('lastname');
-    print('phone');
-    print('password');
-    print('confirmpassword');
+    print(email);
+    print(name);
+    print(lastname);
+    print(phone);
+    print(password);
+    print(confirmPassword);
   }
 }

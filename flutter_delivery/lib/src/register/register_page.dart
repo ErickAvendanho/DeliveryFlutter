@@ -13,7 +13,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  
   RegisterController _con = new RegisterController();
 
   @override
@@ -25,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _con.init(context);
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
         borderRadius: BorderRadius.circular(30),
       ),
       child: TextField(
-        controller: _con.confirmPasswordController,
+        controller: _con.passwordController,
         decoration: InputDecoration(
           hintText: 'Contraseña',
           border: InputBorder.none,
