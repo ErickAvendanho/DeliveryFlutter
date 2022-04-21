@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/src/login/login_page.dart';
-import 'package:flutter_delivery/src/register/register_page.dart';
+import 'package:flutter_delivery/src/pages/login/login_page.dart';
+import 'package:flutter_delivery/src/pages/register/register_page.dart';
 import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 void main() {
@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
