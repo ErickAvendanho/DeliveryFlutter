@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/src/pages/client/products/list/client_products_list_page.dart';
+import 'package:flutter_delivery/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
 import 'package:flutter_delivery/src/pages/login/login_page.dart';
 import 'package:flutter_delivery/src/pages/register/register_page.dart';
+import 'package:flutter_delivery/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 void main() {
@@ -27,6 +29,10 @@ class _MyAppState extends State<MyApp> {
         'register': (BuildContext context) => const RegisterPage(),
         'client/products/list': (BuildContext context) =>
             const ClientProductsListPage(),
+        'restaurant/orders/list': (BuildContext context) =>
+            const RestaurantOrdersListPage(),
+        'delivery/orders/list': (BuildContext context) =>
+            const DeliveryOrdersListPage(),
       },
       theme: ThemeData(
           //fontFamily: 'NimbusSans',
