@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_delivery/src/models/rol.dart';
@@ -13,7 +11,6 @@ class RolesPage extends StatefulWidget {
 }
 
 class _RolesPageState extends State<RolesPage> {
-
   RolesController _con = new RolesController();
 
   @override
@@ -31,21 +28,22 @@ class _RolesPageState extends State<RolesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Selecciona Rol'),
-        ),
+      ),
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.14),
         child: ListView(
-          children: _con.user != null ? _con.user.roles.map((Rol rol) {
-            return _cardRol(rol);
-          }).toList() : []
-        ),
+            children: _con.user != null
+                ? _con.user.roles.map((Rol rol) {
+                    return _cardRol(rol);
+                  }).toList()
+                : []),
       ),
     );
   }
 
-  Widget _cardRol(Rol rol){
+  Widget _cardRol(Rol rol) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         _con.goToPage(rol.route);
       },
       child: Column(
@@ -53,30 +51,30 @@ class _RolesPageState extends State<RolesPage> {
           Container(
             height: 100,
             child: FadeInImage(
-              image:rol.image != null 
-              ? NetworkImage(rol.image) 
-              : AssetImage('assets/img/noimagen.png'),
-    
-            fit: BoxFit.contain,
-            fadeInDuration: Duration(milliseconds: 50),
-            placeholder: AssetImage('assets/img/noimagen.png'),
+              image: rol.image != null
+                  ? NetworkImage(rol.image)
+                  : AssetImage('assets/img/noimagen.png'),
+              fit: BoxFit.contain,
+              fadeInDuration: Duration(milliseconds: 50),
+              placeholder: AssetImage('assets/img/noimagen.png'),
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Text(
             rol.name ?? '',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black
-              ),
+            style: TextStyle(fontSize: 16, color: Colors.black),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
         ],
       ),
     );
   }
 
-  void refresh(){
+  void refresh() {
     setState(() {});
   }
 }
