@@ -28,10 +28,13 @@ class _MyAppState extends State<MyApp> {
       routes: {
         'login': (BuildContext context) => const LoginPage(),
         'register': (BuildContext context) => const RegisterPage(),
-        'roles' : (BuildContext context) => const RolesPage(),
-        'client/products/list': (BuildContext context) =>const ClientProductsListPage(),
-        'restaurant/orders/list': (BuildContext context) =>const RestaurantOrdersListPage(),
-        'delivery/orders/list': (BuildContext context) =>const DeliveryOrdersListPage(),
+        'roles': (BuildContext context) => const RolesPage(),
+        'client/products/list': (BuildContext context) =>
+            const ClientProductsListPage(),
+        'restaurant/orders/list': (BuildContext context) =>
+            const RestaurantOrdersListPage(),
+        'delivery/orders/list': (BuildContext context) =>
+            const DeliveryOrdersListPage(),
       },
       theme: ThemeData(
           //fontFamily: 'NimbusSans',

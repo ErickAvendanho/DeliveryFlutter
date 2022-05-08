@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_delivery/src/models/rol.dart';
 import 'package:flutter_delivery/src/pages/roles/roles_controller.dart';
+import 'package:flutter_delivery/src/utils/my_colors.dart';
 
 class RolesPage extends StatefulWidget {
   const RolesPage({Key key}) : super(key: key);
@@ -27,7 +28,8 @@ class _RolesPageState extends State<RolesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selecciona Rol'),
+        title: Text('Selecciona un rol'),
+        backgroundColor: MyColors.primaryColor,
       ),
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.14),

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_delivery/src/models/user.dart';
 import 'package:flutter_delivery/src/utils/shared_pref.dart';
 
-class ClientProductsListController {
+class RestaurantOrdersListController {
   BuildContext context;
   SharedPref _sharedPref = new SharedPref();
   GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
+
   Function refresh;
   User user;
 
