@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/src/models/response_api.dart';
 import 'package:flutter_delivery/src/models/user.dart';
 import 'package:flutter_delivery/src/provider/users_provider.dart';
 import 'package:flutter_delivery/src/utils/my_snackbar.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController {
   BuildContext context;
@@ -15,8 +18,12 @@ class RegisterController {
 
   UsersProvider usersProvider = new UsersProvider();
 
+  PickedFile pickedFile;
+  File
+
   Future init(BuildContext context) {
     this.context = context;
+    this.refresh = refresh;
     usersProvider.init(context);
   }
 
@@ -68,6 +75,37 @@ class RegisterController {
 
     print('RESPUESTA: ${responseApi.toJson()}');
   }
+
+  Future selectImage(ImageSource imageSource) async{
+
+  }
+
+  void showAlertDialog(){
+    Widget galleryButton = ElevatedButton(
+      onPressed: (){}, 
+      child: Text('Galeria')
+      );
+
+      Widget cameraButton = ElevatedButton(
+      onPressed: (){}, 
+      child: Text('Camara')
+      );
+
+    AlertDialog alertDialog = AlertDialog(
+      title: Text ('Selecciona tu imagen'),
+      actions: [
+        galleryButton,
+        cameraButton
+      ],
+    );
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return alertDialog;
+      }
+    );
+  } 
 
   void back() {
     Navigator.pop(context);

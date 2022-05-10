@@ -140,6 +140,7 @@ class _LoginPageState extends State<LoginPage> {
           '¿No tienes cuenta?',
           style: TextStyle(
             color: MyColors.primaryColor,
+            fontSize: 17
           ),
         ),
         const SizedBox(width: 7),
@@ -150,6 +151,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: MyColors.primaryColor,
+              fontSize: 17
             ),
           ),
         ),
