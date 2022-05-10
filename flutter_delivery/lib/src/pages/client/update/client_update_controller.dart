@@ -59,7 +59,7 @@ class ClientUpdateController {
       return;
     }
 
-    _progressDialog.show(max: 100, msg: 'Espere un momento...');
+    _progressDialog.show(max: 100, msg: 'Espere un momento.....');
     isEnable = false;
 
     User user = new User(
