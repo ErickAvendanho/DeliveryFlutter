@@ -24,9 +24,8 @@ class ClientProductsListController {
     key.currentState.openDrawer();
   }
 
-
-  void goToUpdatePage(){
-    Navigator.pushNamed(context, 'client/update');
+  void goToUpdatePage() {
+    Navigator.pushNamed(context, 'client/update/');
   }
 
   void goToRoles() {

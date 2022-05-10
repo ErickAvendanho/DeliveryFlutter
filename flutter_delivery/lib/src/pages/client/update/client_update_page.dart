@@ -13,7 +13,6 @@ class ClientUpdatePage extends StatefulWidget {
 }
 
 class _ClientUpdatePageState extends State<ClientUpdatePage> {
-  
   ClientUpdateController _con = new ClientUpdateController();
 
   @override
@@ -31,19 +30,20 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Editar Perfil'),
+        backgroundColor: MyColors.primaryColor,
       ),
       body: Container(
         width: double.infinity,
-        child:SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 50),
-                    _imageUser(),
-                    const SizedBox(height: 30),
-                    _textFieldName(),
-                    _textFieldLastName(),
-                    _textFieldPhone(),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              _imageUser(),
+              const SizedBox(height: 30),
+              _textFieldName(),
+              _textFieldLastName(),
+              _textFieldPhone(),
+            ],
           ),
         ),
       ),
@@ -55,11 +55,11 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
     return GestureDetector(
       onTap: _con.showAlertDialog,
       child: CircleAvatar(
-        backgroundImage: _con.imageFile != null 
-        ? FileImage(_con.imageFile)
-        : _con.user?.image != null 
-          ? NetworkImage(_con.user?.image) 
-          :const AssetImage('assets/img/user_profile_2.png'),
+        backgroundImage: _con.imageFile != null
+            ? FileImage(_con.imageFile)
+            : _con.user?.image != null
+                ? NetworkImage(_con.user?.image)
+                : const AssetImage('assets/img/user_profile_2.png'),
         radius: 60,
         backgroundColor: Colors.grey[200],
       ),
@@ -168,9 +168,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
     );
   }
 
-  void refresh(){
-    setState(() {
-      
-    });
+  void refresh() {
+    setState(() {});
   }
 }
