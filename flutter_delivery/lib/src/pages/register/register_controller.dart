@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_delivery/src/models/user.dart';
 import 'package:flutter_delivery/src/provider/users_provider.dart';
 import 'package:flutter_delivery/src/utils/my_snackbar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class RegisterController {
   BuildContext context;
@@ -19,12 +21,18 @@ class RegisterController {
   UsersProvider usersProvider = new UsersProvider();
 
   PickedFile pickedFile;
-  File
+  File imageFile;
+  Function refresh;
 
-  Future init(BuildContext context) {
+  ProgressDialog _progressDialog;
+
+  bool isEnable = true;
+
+  Future init(BuildContext context, void Function() refresh) {
     this.context = context;
     this.refresh = refresh;
     usersProvider.init(context);
+    _progressDialog = ProgressDialog(context: context);
   }
 
   void register() async {
@@ -56,38 +64,66 @@ class RegisterController {
       return;
     }
 
+    if(imageFile == null){
+       MySnackBar.show(
+          context, "Selecciona una imagen");
+      return;
+    }
+
+    _progressDialog.show(max: 100, msg: 'Espere un momento...');
+    isEnable = false;
+
     User user = new User(
         email: email,
         name: name,
         lastname: lastname,
         phone: phone,
-        password: password);
+        password: password
+    );
 
-    ResponseApi responseApi = await usersProvider.create(user);
+    Stream stream = await usersProvider.createdWithImage(user, imageFile);
+    stream.listen((res) { 
 
-    MySnackBar.show(context, responseApi.message);
+      _progressDialog.close();
 
-    if (responseApi.success) {
-      Future.delayed(Duration(seconds: 3), () {
-        Navigator.pushReplacementNamed(context, 'login');
-      });
-    }
+      //ResponseApi responseApi = await usersProvider.create(user);
+      ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+      print('RESPUESTA: ${responseApi.toJson()}');
 
-    print('RESPUESTA: ${responseApi.toJson()}');
+      MySnackBar.show(context, responseApi.message);
+
+      if (responseApi.success) {
+        Future.delayed(Duration(seconds: 3), () {
+          Navigator.pushReplacementNamed(context, 'login');
+        });
+      }
+      else{
+        isEnable = true;
+      }
+    });
   }
 
   Future selectImage(ImageSource imageSource) async{
-
+    pickedFile = await ImagePicker().getImage(source: imageSource);
+    if (pickedFile != null){
+      imageFile = File(pickedFile.path);
+    }
+    Navigator.pop(context);
+     refresh();
   }
 
   void showAlertDialog(){
     Widget galleryButton = ElevatedButton(
-      onPressed: (){}, 
+      onPressed: (){
+        selectImage(ImageSource.gallery);
+      }, 
       child: Text('Galeria')
       );
 
       Widget cameraButton = ElevatedButton(
-      onPressed: (){}, 
+      onPressed: (){
+        selectImage(ImageSource.camera);
+      }, 
       child: Text('Camara')
       );
 
