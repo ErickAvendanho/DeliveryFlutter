@@ -7,6 +7,7 @@ import 'package:flutter_delivery/src/models/user.dart';
 import 'package:flutter_delivery/src/provider/users_provider.dart';
 import 'package:flutter_delivery/src/utils/my_snackbar.dart';
 import 'package:flutter_delivery/src/utils/shared_pref.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
@@ -59,23 +60,26 @@ class ClientUpdateController {
     _progressDialog.show(max: 100, msg: 'Espere un momento.....');
     isEnable = false;
 
-    User user = new User(
+    User myUser = new User(
+      id: user.id,
       name: name,
       lastname: lastname,
       phone: phone,
     );
 
-    Stream stream = await usersProvider.update(user, imageFile);
-    stream.listen((res) {
+    Stream stream = await usersProvider.update(myUser, imageFile);
+    stream.listen((res) async {
       _progressDialog.close();
 
       //ResponseApi responseApi = await usersProvider.create(user);
       ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-      print('RESPUESTA: ${responseApi.toJson()}');
-
-      MySnackBar.show(context, responseApi.message);
+      Fluttertoast.showToast(msg: responseApi.message);
 
       if (responseApi.success) {
+        user = await usersProvider
+            .getById(myUser.id); // OBTENIENDO EL USUARIO DE LA BD
+        _sharedPref.save('user', user.toJson());
+
         Navigator.pushNamedAndRemoveUntil(
             context, 'client/products/list', (route) => false);
       } else {
