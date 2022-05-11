@@ -27,9 +27,9 @@ class ClientUpdateController {
 
   bool isEnable = true;
   User user;
-  SharedPref _sharedPref = new SharedPref(); 
+  SharedPref _sharedPref = new SharedPref();
 
-  Future init(BuildContext context, void Function() refresh)  async{
+  Future init(BuildContext context, void Function() refresh) async {
     this.context = context;
     this.refresh = refresh;
     usersProvider.init(context);
@@ -37,25 +37,22 @@ class ClientUpdateController {
     user = User.fromJson(await _sharedPref.read('user'));
     nameController.text = user.name;
     lastnameController.text = user.lastname;
-    phoneController.text = user. phone;
+    phoneController.text = user.phone;
     refresh();
   }
 
-  void register() async {
+  void update() async {
     String name = nameController.text.trim();
     String lastname = lastnameController.text.trim();
     String phone = phoneController.text.trim();
 
-    if (name.isEmpty ||
-        lastname.isEmpty ||
-        phone.isEmpty ) {
+    if (name.isEmpty || lastname.isEmpty || phone.isEmpty) {
       MySnackBar.show(context, "Debes ingresar todos los campos");
       return;
     }
 
-    if(imageFile == null){
-       MySnackBar.show(
-          context, "Selecciona una imagen");
+    if (imageFile == null) {
+      MySnackBar.show(context, "Selecciona una imagen");
       return;
     }
 
@@ -63,14 +60,13 @@ class ClientUpdateController {
     isEnable = false;
 
     User user = new User(
-        name: name,
-        lastname: lastname,
-        phone: phone,
+      name: name,
+      lastname: lastname,
+      phone: phone,
     );
 
-    Stream stream = await usersProvider.createdWithImage(user, imageFile);
-    stream.listen((res) { 
-
+    Stream stream = await usersProvider.update(user, imageFile);
+    stream.listen((res) {
       _progressDialog.close();
 
       //ResponseApi responseApi = await usersProvider.create(user);
@@ -80,55 +76,47 @@ class ClientUpdateController {
       MySnackBar.show(context, responseApi.message);
 
       if (responseApi.success) {
-        Future.delayed(Duration(seconds: 3), () {
-          Navigator.pushReplacementNamed(context, 'login');
-        });
-      }
-      else{
+        Navigator.pushNamedAndRemoveUntil(
+            context, 'client/products/list', (route) => false);
+      } else {
         isEnable = true;
       }
     });
   }
 
-  Future selectImage(ImageSource imageSource) async{
+  Future selectImage(ImageSource imageSource) async {
     pickedFile = await ImagePicker().getImage(source: imageSource);
-    if (pickedFile != null){
+    if (pickedFile != null) {
       imageFile = File(pickedFile.path);
     }
     Navigator.pop(context);
-     refresh();
+    refresh();
   }
 
-  void showAlertDialog(){
+  void showAlertDialog() {
     Widget galleryButton = ElevatedButton(
-      onPressed: (){
-        selectImage(ImageSource.gallery);
-      }, 
-      child: Text('Galeria')
-      );
+        onPressed: () {
+          selectImage(ImageSource.gallery);
+        },
+        child: Text('Galeria'));
 
-      Widget cameraButton = ElevatedButton(
-      onPressed: (){
-        selectImage(ImageSource.camera);
-      }, 
-      child: Text('Camara')
-      );
+    Widget cameraButton = ElevatedButton(
+        onPressed: () {
+          selectImage(ImageSource.camera);
+        },
+        child: Text('Camara'));
 
     AlertDialog alertDialog = AlertDialog(
-      title: Text ('Selecciona tu imagen'),
-      actions: [
-        galleryButton,
-        cameraButton
-      ],
+      title: Text('Selecciona tu imagen'),
+      actions: [galleryButton, cameraButton],
     );
 
-      showDialog(
+    showDialog(
         context: context,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return alertDialog;
-      }
-    );
-  } 
+        });
+  }
 
   void back() {
     Navigator.pop(context);

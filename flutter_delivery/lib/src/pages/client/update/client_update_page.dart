@@ -157,7 +157,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
-        onPressed: _con.isEnable ? _con.register : null,
+        onPressed: _con.isEnable ? _con.update : null,
         child: const Text('ACTUALIZAR PERFIL'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
