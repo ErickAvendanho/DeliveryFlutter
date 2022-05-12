@@ -73,7 +73,7 @@ class ClientUpdateController {
       if (responseApi.success) {
         user = await usersProvider
             .getById(myUser.id); // OBTENIENDO EL USUARIO DE LA BD
-        print('Usuario obtenido: ${user.toJson()}');
+        print('usuario obtenido: ${user.toJson()}');
         _sharedPref.save('user', user.toJson());
 
         Navigator.pushNamedAndRemoveUntil(
