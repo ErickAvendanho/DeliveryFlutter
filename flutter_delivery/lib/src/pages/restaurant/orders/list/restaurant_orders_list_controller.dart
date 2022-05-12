@@ -21,6 +21,10 @@ class RestaurantOrdersListController {
     _sharedPref.logout(context);
   }
 
+  void goToCategoryCreate() {
+    Navigator.pushNamed(context, 'restaurant/categories/create');
+  }
+
   void openDrawer() {
     key.currentState.openDrawer();
   }
