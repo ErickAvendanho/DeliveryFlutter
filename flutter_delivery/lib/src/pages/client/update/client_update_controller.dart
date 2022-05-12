@@ -52,20 +52,15 @@ class ClientUpdateController {
       return;
     }
 
-    if (imageFile == null) {
-      MySnackBar.show(context, "Selecciona una imagen");
-      return;
-    }
-
     _progressDialog.show(max: 100, msg: 'Espere un momento.....');
     isEnable = false;
 
     User myUser = new User(
-      id: user.id,
-      name: name,
-      lastname: lastname,
-      phone: phone,
-    );
+        id: user.id,
+        name: name,
+        lastname: lastname,
+        phone: phone,
+        image: user.image);
 
     Stream stream = await usersProvider.update(myUser, imageFile);
     stream.listen((res) async {
@@ -78,6 +73,7 @@ class ClientUpdateController {
       if (responseApi.success) {
         user = await usersProvider
             .getById(myUser.id); // OBTENIENDO EL USUARIO DE LA BD
+        print('Usuario obtenido: ${user.toJson()}');
         _sharedPref.save('user', user.toJson());
 
         Navigator.pushNamedAndRemoveUntil(
