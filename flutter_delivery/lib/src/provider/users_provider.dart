@@ -16,11 +16,11 @@ class UsersProvider {
   String _api = '/api/users';
 
   BuildContext context;
-  String token;
+  User sesionUser;
 
-  Future init(BuildContext context, {String token}) {
+  Future init(BuildContext context, {User sesionUser}) {
     this.context = context;
-    this.token = token;
+    this.sesionUser = sesionUser;
   }
 
   Future<User> getById(String id) async {
@@ -28,13 +28,13 @@ class UsersProvider {
       Uri url = Uri.http(_url, '$_api/findById/$id');
       Map<String, String> headers = {
         'Content-Type': 'application/json',
-        'Authorization': token 
+        'Authorization': sesionUser.sessionToken 
         };
       final res = await http.get(url, headers: headers);
 
       if(res.statusCode == 401){ //NO AUTORIZADA
         Fluttertoast.showToast(msg: 'Tu sesion expiro');
-        new SharedPref().logout(context);
+        new SharedPref().logout(context, sesionUser.id);
       }
 
       final data = json.decode(res.body);
@@ -61,9 +61,10 @@ class UsersProvider {
       request.fields['user'] = json.encode(user);
       final response = await request.send(); //ENVIARA LA PETICIÓN
       return response.stream.transform(utf8.decoder);
-    } catch (e) {
-      print('Error: $e');
-      return null;
+    } 
+    catch (e) {
+    print('Error: $e');
+    return null;
     }
   }
 
@@ -71,7 +72,7 @@ class UsersProvider {
     try {
       Uri url = Uri.http(_url, '$_api/update');
       final request = http.MultipartRequest('PUT', url);
-      request.headers['Authorization'] = token;
+      request.headers['Authorization'] = sesionUser.sessionToken;
 
       if (image != null) {
         request.files.add(http.MultipartFile('image',
@@ -85,11 +86,12 @@ class UsersProvider {
 
       if(response.statusCode == 401){
         Fluttertoast.showToast(msg: 'Tu sesion expiro');
-        new SharedPref().logout(context);
+        new SharedPref().logout(context, sesionUser.id);
       }
 
       return response.stream.transform(utf8.decoder);
-    } catch (e) {
+    } 
+      catch (e) {
       print('Error: $e');
       return null;
     }
@@ -111,6 +113,25 @@ class UsersProvider {
       return null;
     }
   }
+
+   Future<ResponseApi> logout(String idUser) async {
+    try {
+      Uri url = Uri.http(_url, '$_api/logout');
+      String bodyParams = json.encode({
+        'id' : idUser
+      });
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+      };
+      final res = await http.post(url, headers: headers, body: bodyParams);
+      final data = json.decode(res.body);
+      ResponseApi responseApi = ResponseApi.fromJson(data);
+      return responseApi;
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  } 
 
   Future<ResponseApi> login(String email, String password) async {
     try {
